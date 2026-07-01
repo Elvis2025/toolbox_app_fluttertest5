@@ -1,0 +1,28 @@
+name: toolbox_app
+
+description: App escolar tipo caja de herramientas con Flutter, MVVM y arquitectura limpia.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: any
+  dio: any
+  just_audio: any
+  qr_flutter: any
+  url_launcher: any
+  flutter_launcher_icons: any
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/images/my_photo.png
