@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core/theme/app_theme.dart';
-import 'core/widgets/app_shell.dart';
+
+import 'features/splash/presentation/splash_page.dart';
 
 import 'features/age/presentation/age_view_model.dart';
 import 'features/gender/presentation/gender_view_model.dart';
@@ -36,7 +37,7 @@ class ToolboxApp extends StatelessWidget {
       title: 'Magic Toolbox',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
-      home: const AppShell(),
+      home: const SplashPage(),
     );
   }
 }

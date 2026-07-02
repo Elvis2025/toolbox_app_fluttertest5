@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../../../core/navigation/magic_tool_route.dart';
+import '../../../../core/services/sound_service.dart';
 import '../../../../core/theme/app_theme.dart';
 
 import '../../../about/presentation/pages/about_page.dart';
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late final AnimationController _floatController;
   late final AnimationController _toolExitController;
 
-  static const int _boxStepDuration = 3000;
+  static const int _boxStepDuration = 1800;
 
   final List<String> _boxImages = const [
     'assets/images/closetoolbox.png',
@@ -75,19 +76,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   void _startBoxOpening() {
     _timers.add(
-      Timer(const Duration(milliseconds: 4200), () {
+      Timer(const Duration(milliseconds: 2600), () {
         if (mounted) setState(() => _boxStage = 1);
       }),
     );
 
     _timers.add(
-      Timer(const Duration(milliseconds: 4200 + _boxStepDuration), () {
+      Timer(const Duration(milliseconds: 2600 + _boxStepDuration), () {
         if (mounted) setState(() => _boxStage = 2);
       }),
     );
 
     _timers.add(
-      Timer(const Duration(milliseconds: 4200 + (_boxStepDuration * 2)), () {
+      Timer(const Duration(milliseconds: 2600 + (_boxStepDuration * 2)), () {
         if (mounted) setState(() => _boxStage = 3);
       }),
     );
@@ -107,6 +108,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   Future<void> _selectTool(_MagicTool tool) async {
     if (_toolSelected || _boxStage != 3) return;
+
+    final index = _tools.indexOf(tool);
+    await SoundService.playSelect(index);
 
     setState(() {
       _selectedTool = tool;
